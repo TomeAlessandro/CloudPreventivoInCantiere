@@ -1,0 +1,56 @@
+﻿@model IEnumerable<CantiereApp.Models.Cantiere>
+
+@{
+    ViewData["Title"] = "View";
+}
+
+<h2>View</h2>
+
+<h4>Cantiere</h4>
+<hr />
+<p>
+    <a asp-controller="Cantiere" asp-action="NuovoCantiere" class="btn btn-primary">Crea nuovo cantiere</a>
+</p>
+<br />
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.NomeCliente)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EmailCliente)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Luogo)
+                </th>
+</thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NomeCliente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmailCliente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Luogo)
+                </td>
+                <td>
+                    @Html.ActionLink("Aggiungi Intervento", "Index", "Intervento", new { NomeCliente = item.NomeCliente, Luogo = item.Luogo }, new { @class = "btn btn-primary btn-large" })
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
